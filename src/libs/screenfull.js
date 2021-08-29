@@ -4,16 +4,15 @@
  * (c) Sindre Sorhus; MIT License
  */
 
-export var screenfull = (function () {
   'use strict';
 
   var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
   var isCommonjs = typeof module !== 'undefined' && module.exports;
   var hasWindow = typeof window !== 'undefined';
 
-  var fn = (function () {
     var val;
 
+  var fn = (function () {
     var fnMap = [
       [
         'requestFullscreen',
@@ -78,7 +77,7 @@ export var screenfull = (function () {
 
   var eventNameMap = {
     change: fn.fullscreenchange,
-    error: fn.fullscreenerror,
+    error: fn.fullscreenerror
   };
 
   var screenfull = {
@@ -179,10 +178,4 @@ export var screenfull = (function () {
     },
   });
 
-  if (isCommonjs) {
-    module.exports = screenfull;
-  } else if (hasWindow) {
-    window.screenfull = screenfull;
-  } 
-
-})();
+export { screenfull };
