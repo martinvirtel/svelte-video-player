@@ -3,11 +3,13 @@
  * v5.1.0 - 2020-12-24
  * (c) Sindre Sorhus; MIT License
  */
-(function () {
+
+export var screenfull = (function () {
   'use strict';
 
   var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
   var isCommonjs = typeof module !== 'undefined' && module.exports;
+  var hasWindow = typeof window !== 'undefined';
 
   var fn = (function () {
     var val;
@@ -150,11 +152,10 @@
   if (!fn) {
     if (isCommonjs) {
       module.exports = { isEnabled: false };
-    } else {
+    } else if (hasWindow){
       window.screenfull = { isEnabled: false };
     }
-
-    return;
+    
   }
 
   Object.defineProperties(screenfull, {
@@ -180,7 +181,8 @@
 
   if (isCommonjs) {
     module.exports = screenfull;
-  } else {
+  } else if (hasWindow) {
     window.screenfull = screenfull;
-  }
+  } 
+
 })();
